@@ -403,3 +403,117 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+
+/* ==========================================================================
+   GA4 측정: section_view (구간 도달) · cta_click (CTA 클릭)
+   - index.html <head>의 기존 Google 태그(gtag)를 재사용합니다. (태그 중복 설치 없음)
+   - page_view는 태그 자동 전송만 사용하고, 여기서는 보내지 않습니다.
+   - 개인정보는 수집하지 않습니다. 보내는 값은 section_name / button_location 뿐입니다.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  // 같은 코드가 다시 실행돼도 관찰자·리스너를 중복 등록하지 않음
+  if (window.__gaMeasureInit) return;
+  window.__gaMeasureInit = true;
+
+  // GA가 차단·미로드여도 오류 없이 넘어가도록 (링크 동작에는 관여하지 않음)
+  function sendEvent(name, params) {
+    try {
+      if (typeof window.gtag === 'function') window.gtag('event', name, params);
+    } catch (e) { /* 측정 실패는 무시 */ }
+  }
+
+  function init() {
+    /* ------------------------------------------------------------------
+       1. section_view — 제목 면적 50% 이상이 보이면 1회 전송
+       ------------------------------------------------------------------ */
+    var SECTIONS = [
+      { id: 'hero-title', name: 'hero' },        // h1 먼 길도, 아이에게는 편안한 자리로.
+      { id: 'solution-title', name: 'detail' },  // h2 세 가지 문제에, 세 가지 설계로 답했습니다.
+      { id: 'final-cta-title', name: 'cta' }     // h2 다음 먼 길은, 조금 더 편안하게.
+    ];
+    var targets = [];
+    SECTIONS.forEach(function (s) {
+      var el = document.getElementById(s.id);
+      if (el) targets.push({ el: el, name: s.name, visible: false });
+    });
+    var sent = {};       // section_name별 전송 여부 (페이지 로드당 1회)
+    var observer = null;
+
+    function headerOffset() {
+      var header = document.getElementById('header');
+      return header ? Math.ceil(header.getBoundingClientRect().height) : 0;
+    }
+
+    // 문서가 실제로 보이는 상태 + 50% 이상 노출 + 아직 안 보냄 → 전송
+    function trySend(t) {
+      if (sent[t.name] || !t.visible || document.visibilityState !== 'visible') return;
+      sent[t.name] = true;
+      sendEvent('section_view', { section_name: t.name });
+      if (observer) observer.unobserve(t.el);
+    }
+
+    // 고정 헤더 높이만큼 관찰 영역 위쪽을 제외
+    function observe() {
+      if (!('IntersectionObserver' in window)) return;
+      if (observer) observer.disconnect();
+      observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          for (var i = 0; i < targets.length; i++) {
+            if (targets[i].el === entry.target) {
+              targets[i].visible = entry.isIntersecting && entry.intersectionRatio >= 0.5;
+              trySend(targets[i]);
+            }
+          }
+        });
+      }, { rootMargin: '-' + headerOffset() + 'px 0px 0px 0px', threshold: 0.5 });
+      targets.forEach(function (t) { if (!sent[t.name]) observer.observe(t.el); });
+    }
+    observe();
+
+    // 다른 탭에서 돌아오면 현재 보이는 제목을 다시 확인 (관찰자를 새로 만들어 최신 상태로 판정)
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') observe();
+    });
+    // 화면 크기가 바뀌면(헤더 높이 변화) 아직 안 보낸 제목만 다시 관찰
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(observe, 250);
+    });
+
+    /* ------------------------------------------------------------------
+       2. cta_click — 쿠팡 CTA 링크를 누를 때마다 1회
+       #cta-hero / #cta-final은 버튼을 감싼 영역이라, 그 안의 쿠팡 링크에만 연결합니다.
+       (보조 링크·배너 클릭은 CTA로 세지 않음)
+       ------------------------------------------------------------------ */
+    var CTAS = [
+      { selector: '#cta-hero, [data-cta-location="hero"]', location: 'hero' },
+      { selector: '#cta-final, [data-cta-location="final"]', location: 'final' }
+    ];
+    var bound = [];   // 이미 리스너를 단 링크 (두 선택자가 같은 요소여도 1번만)
+
+    function resolveLink(node) {
+      if (node.matches('a[href]')) return node;
+      return node.querySelector('a[href^="https://link.coupang.com/"]');
+    }
+
+    CTAS.forEach(function (cta) {
+      var nodes = document.querySelectorAll(cta.selector);
+      for (var i = 0; i < nodes.length; i++) {
+        var link = resolveLink(nodes[i]);
+        if (!link || bound.indexOf(link) !== -1) continue;
+        bound.push(link);
+        // 마우스 클릭과 키보드 Enter 모두 브라우저가 click 이벤트 1번으로 처리
+        // 기본 이동(새 탭 열기)은 막지도 늦추지도 않음
+        link.addEventListener('click', function (loc) {
+          return function () { sendEvent('cta_click', { button_location: loc }); };
+        }(cta.location));
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
