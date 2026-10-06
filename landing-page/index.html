@@ -3,6 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google tag (gtag.js) — GA4 기본 태그. page_view는 자동 전송 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QXQZDLES8D"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QXQZDLES8D');
+  </script>
   <title>조이 아이스핀 360 i-Size | 먼 길도, 아이에게는 편안한 자리로</title>
   <meta name="description" content="6단계 슬리피타임 틸트, Intelli-Fit™ 메모리폼 헤드레스트, 360도 회전. ADAC 1.8(gut), i-Size ECE R129/03 인증 회전형 카시트 큐레이션 가이드.">
   <meta property="og:title" content="조이 아이스핀 360 i-Size | 먼 길도, 아이에게는 편안한 자리로">
@@ -24,6 +33,7 @@
 
   <link rel="preload" as="image" href="assets/hero-poster.webp" fetchpriority="high">
   <link rel="stylesheet" href="styles-v2.css?v=20261006b">
+  <link rel="stylesheet" href="styles-v3.css?v=20261006d">
   <script>
     /* 히어로 인트로: 모션 허용 시에만 텍스트를 숨겨 두고, 3D 모듈이 순서대로 엽니다.
        모듈이 2.5초 안에 시작하지 못하면(로드 실패 등) 텍스트를 바로 보여 줍니다. */
@@ -284,9 +294,10 @@
                          data-caption="앞보기·뒤보기 모두 6단계로 조절되는 슬리피타임 틸트"
                          width="780" height="1430" loading="lazy"
                          onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                     <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                   </div>
-                  <figcaption>앞보기·뒤보기 모두 6단계로 조절되는 슬리피타임 틸트 (클릭 시 확대)</figcaption>
+                  <figcaption><span class="plate-src">공식 상세페이지</span>앞보기·뒤보기 모두 6단계로 조절되는 슬리피타임 틸트</figcaption>
                 </figure>
                 <figure class="evidence-figure">
                   <div class="image-matte-wrap">
@@ -297,9 +308,10 @@
                          data-caption="머리 양옆을 감싸는 Intelli-Fit™ 메모리폼 헤드레스트"
                          width="780" height="2000" loading="lazy"
                          onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                     <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                   </div>
-                  <figcaption>머리 양옆을 감싸는 Intelli-Fit™ 메모리폼 헤드레스트 (클릭 시 확대)</figcaption>
+                  <figcaption><span class="plate-src">공식 상세페이지</span>머리 양옆을 감싸는 Intelli-Fit™ 메모리폼 헤드레스트</figcaption>
                 </figure>
               </div>
             </div>
@@ -361,32 +373,12 @@
                          data-caption="시트 측면 에어 벤틸레이션과 메쉬 패브릭 디테일"
                          width="780" height="800" loading="lazy"
                          onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                     <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                   </div>
-                  <figcaption>시트 측면 에어 벤틸레이션과 메쉬 패브릭 (클릭 시 확대)</figcaption>
+                  <figcaption><span class="plate-src">공식 상세페이지</span>시트 측면 에어 벤틸레이션과 메쉬 패브릭</figcaption>
                 </figure>
               </div>
-            </div>
-          </div>
-
-          <!-- [모션 그래픽 2] 에어 벤틸레이션 실시간 공기 순환 스트림 -->
-          <div class="interactive-motion-card airflow-motion-card">
-            <div class="airflow-stream-wrap">
-              <div class="airflow-wind-wave wave-1"></div>
-              <div class="airflow-wind-wave wave-2"></div>
-              <div class="airflow-wind-wave wave-3"></div>
-              <div class="vent-pores-animation" aria-hidden="true">
-                <span class="pore-dot p1"></span>
-                <span class="pore-dot p2"></span>
-                <span class="pore-dot p3"></span>
-                <span class="pore-dot p4"></span>
-                <span class="pore-dot p5"></span>
-              </div>
-            </div>
-            <div class="airflow-text-box">
-              <span class="motion-badge">DYNAMIC AIRFLOW STREAM</span>
-              <strong class="airflow-headline">측면 흡입 &rarr; 후면 배출 자연 순환 공기 흐름</strong>
-              <p class="airflow-desc">차량 에어컨 냉기가 쉘 측면 홀로 유입되어 등판 메쉬 패브릭 사이로 순환하면서, 갇히기 쉬운 아이의 체온과 습기를 실시간으로 배출합니다.</p>
             </div>
           </div>
 
@@ -439,9 +431,10 @@
                          data-caption="양옆 레버로 돌리는 360° 부드러운 회전 다이어그램"
                          width="640" height="640" loading="lazy"
                          onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                     <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                   </div>
-                  <figcaption>양옆 레버로 돌리는 360° 회전 (클릭 시 확대)</figcaption>
+                  <figcaption><span class="plate-src">공식 상세페이지</span>양옆 레버로 돌리는 360° 회전</figcaption>
                 </figure>
                 <figure class="evidence-figure">
                   <div class="image-matte-wrap">
@@ -452,9 +445,10 @@
                          data-caption="벨트를 양옆에 열어 두는 전용 마그네틱 벨트 홀더"
                          width="780" height="870" loading="lazy"
                          onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                     <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                   </div>
-                  <figcaption>벨트를 양옆에 열어 두는 벨트 홀더 (클릭 시 확대)</figcaption>
+                  <figcaption><span class="plate-src">공식 상세페이지</span>벨트를 양옆에 열어 두는 벨트 홀더</figcaption>
                 </figure>
               </div>
             </div>
@@ -577,9 +571,10 @@
                          data-caption="벨트를 조이면 자동으로 펼쳐지는 측면 충격 보호대"
                          width="640" height="640" loading="lazy"
                          onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                     <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                   </div>
-                  <figcaption>벨트를 조이면 펼쳐지는 측면 보호대 (클릭 시 확대)</figcaption>
+                  <figcaption><span class="plate-src">공식 상세페이지</span>벨트를 조이면 펼쳐지는 측면 보호대</figcaption>
                 </figure>
                 <figure class="evidence-figure">
                   <div class="image-matte-wrap">
@@ -590,9 +585,10 @@
                          data-caption="제조사 공인 충돌 테스트 더미 안전 보호 시뮬레이션 자료"
                          width="780" height="970" loading="lazy"
                          onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                     <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                   </div>
-                  <figcaption>제조사 충돌 테스트 공식 자료 (클릭 시 확대)</figcaption>
+                  <figcaption><span class="plate-src">공식 상세페이지</span>제조사 충돌 테스트 공식 자료</figcaption>
                 </figure>
               </div>
             </div>
@@ -677,9 +673,10 @@
                        data-caption="조이 아이스핀 360 공식 장착 규격 및 치수도"
                        width="640" height="640" loading="lazy"
                        onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                   <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                 </div>
-                <figcaption>앞보기·뒤보기 공식 치수 (클릭 시 확대)</figcaption>
+                <figcaption><span class="plate-src">공식 상세페이지</span>앞보기·뒤보기 공식 치수</figcaption>
               </figure>
 
               <figure class="faq-figure">
@@ -691,9 +688,10 @@
                        data-caption="성장에 맞춰 하나씩 빼는 3단계 분리형 신생아 이너시트"
                        width="640" height="640" loading="lazy"
                        onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
+                    <span class="plate-zoom" aria-hidden="true"></span>
                   <div class="image-fallback-placeholder" aria-hidden="true">이미지 준비 중</div>
                 </div>
-                <figcaption>성장에 맞춰 하나씩 빼는 3단계 이너시트</figcaption>
+                <figcaption><span class="plate-src">공식 상세페이지</span>성장에 맞춰 하나씩 빼는 3단계 이너시트</figcaption>
               </figure>
             </div>
           </div>
@@ -810,7 +808,7 @@
                            data-caption="시트 커버 공식 분해 및 울 코스 세탁 안내"
                            width="780" height="870" loading="lazy"
                            onerror="this.onerror=null; this.parentElement.classList.add('img-fallback'); this.style.display='none';">
-                      <span class="thumb-hint">공식 세탁 안내 컷 (클릭 시 확대)</span>
+                      <span class="thumb-hint">공식 세탁 안내</span>
                     </div>
                     <div class="faq-caveat">
                       <strong>유의점:</strong> 어깨 패드와 하부 시트를 처음 분리할 때는 걸쇠가 뻑뻑하게 느껴질 수 있어, 공식 분해 영상을 먼저 보시길 권합니다.
@@ -1057,6 +1055,17 @@
   </div>
 
   <script src="script-v2.js?v=20261006b"></script>
+  <script>
+    /* 확대 이미지: 키보드 포커스 + Enter/Space로 열기 */
+    document.querySelectorAll('[data-lightbox]').forEach(function (img) {
+      img.setAttribute('tabindex', '0');
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', (img.getAttribute('data-caption') || img.alt) + ' 크게 보기');
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); img.click(); }
+      });
+    });
+  </script>
   <script type="module" src="hero-3d.js"></script>
   <!-- 3D: loaded only when the 3D viewer is near the viewport -->
   <script type="module">
